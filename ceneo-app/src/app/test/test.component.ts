@@ -10,12 +10,12 @@ import { tap, map, filter } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None
 })
 export class TestComponent implements OnInit {
-
-
+  testData$;
   @Input('testInput') myInput;
   @Output() testOutput = new EventEmitter<string>()
   constructor(public testService: TestService) {
 
+    this.testData$ = this.testService.getTestData();
     const subj = new BehaviorSubject(0);
 
     subj.next(1)
@@ -24,8 +24,6 @@ export class TestComponent implements OnInit {
 
     subj.subscribe(val => console.log(val))
     console.log(subj.value);
-
-
 
     const obs = of(1,2,3,4)
     .pipe(

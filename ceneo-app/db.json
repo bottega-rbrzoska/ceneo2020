@@ -1,5 +1,6 @@
 
 {
+    "test": { "name": "test", "value": 1000 },
     "auth": [{
       "id": "alojzy",
       "username": "Alojzy Ciurlok",
@@ -144,4 +145,3 @@
       }
     ]
   }
-  

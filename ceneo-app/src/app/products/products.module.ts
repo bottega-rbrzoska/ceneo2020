@@ -20,8 +20,10 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     CommonModule,
-    ProductsRoutingModule
+    ProductsRoutingModule,
+    SharedModule
   ],
   providers: [ProductService]
 })
 export class ProductsModule { }
+

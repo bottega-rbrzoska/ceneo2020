@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
 import { ClickService } from '../click.service';
 
 @Component({
@@ -6,9 +6,15 @@ import { ClickService } from '../click.service';
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.scss']
 })
-export class BannerComponent implements OnInit, OnDestroy {
+export class BannerComponent implements OnInit, OnDestroy, OnChanges {
 
-  @Input() title;
+  bannerTitle;
+
+  @Input()
+  set title(val:string) {
+    this.bannerTitle = val.toUpperCase()
+  }
+
   @Input() content;
   clickCounter;
   click$;
@@ -30,5 +36,10 @@ export class BannerComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     //this.subscription.unsubscribe();
   }
+
+  ngOnChanges(changes) {
+    console.log(changes)
+  }
+
 
 }

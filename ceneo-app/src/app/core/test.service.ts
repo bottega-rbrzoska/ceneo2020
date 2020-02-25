@@ -15,7 +15,7 @@ export class TestService {
   }
 
   getTestData() {
-    return this.httpClient.get<any>('http://localhost.test:3000/test')
+    return this.httpClient.get<any>('http://localhost:3000/test')
     .pipe(finalize(() => {
       console.log('hide loader')
       this.showLoader = false

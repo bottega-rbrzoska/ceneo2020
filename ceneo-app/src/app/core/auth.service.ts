@@ -3,16 +3,23 @@ import { Subject, BehaviorSubject } from 'rxjs';
 import { User } from '../models/user';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 const apiUrl = environment.apiUrl;
 
 @Injectable()
 export class AuthService {
 
-  private userSubj = new BehaviorSubject(null)
+  private userSubj = new BehaviorSubject<User>(null)
+  get isLoggedIn() {
+    return !!this.userSubj.value;
+  }
   user$ = this.userSubj.asObservable();
+  username$ = this.userSubj.pipe(map(user => user?.username));
+  isLoggedIn$ = this.userSubj.pipe(map(user => !!user));
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private router: Router) {
     const initUser = localStorage.getItem('user');
     this.userSubj.next(initUser ? JSON.parse(initUser) : null)
   }
@@ -26,6 +33,7 @@ export class AuthService {
 
   logout() {
     this.userSubj.next(null);
-    localStorage.removeItem('user')
+    localStorage.removeItem('user');
+    this.router.navigateByUrl('/');
   }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { ClickService } from '../click.service';
 
 @Component({
@@ -6,13 +6,18 @@ import { ClickService } from '../click.service';
   templateUrl: './banner.component.html',
   styleUrls: ['./banner.component.scss']
 })
-export class BannerComponent implements OnInit {
+export class BannerComponent implements OnInit, OnDestroy {
 
   @Input() title;
   @Input() content;
   clickCounter;
+  click$;
+  subscription;
   constructor(private clickService: ClickService) {
-    this.clickCounter = this.clickService.clickCounter;
+    this.click$ =  this.clickService.click$;
+    // this.subscription = this.clickService.click$.subscribe(c => {
+    //   console.log('clicks in banner ' + c)
+    //   this.clickCounter = c});
    }
 
   ngOnInit(): void {
@@ -20,7 +25,10 @@ export class BannerComponent implements OnInit {
 
   clickBanner() {
     this.clickService.click();
-    this.clickCounter = this.clickService.clickCounter;
+  }
+
+  ngOnDestroy() {
+    //this.subscription.unsubscribe();
   }
 
 }

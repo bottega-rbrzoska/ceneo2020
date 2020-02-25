@@ -44,6 +44,14 @@
             "scripts": []
           },
           "configurations": {
+            "dev-trainer": {
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev-trainer.ts"
+                }
+              ]
+            },
             "production": {
               "fileReplacements": [
                 {
@@ -82,6 +90,9 @@
           "configurations": {
             "production": {
               "browserTarget": "ceneo-app:build:production"
+            },
+            "dev-trainer": {
+              "browserTarget": "ceneo-app:build:dev-trainer"
             }
           }
         },

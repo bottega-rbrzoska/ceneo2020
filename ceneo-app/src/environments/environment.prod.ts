@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  logger: 'db'
+  logger: 'db',
+  apiUrl: 'http://ceneo.pl/api'
 };

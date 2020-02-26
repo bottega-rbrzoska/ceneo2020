@@ -15,7 +15,7 @@ export class ProductFormComponent implements OnInit {
   constructor() {
     this.myProductForm = new FormGroup({
       name: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.maxLength(100)),
+      description: new FormControl(''),
       price: new FormControl('', Validators.min(1)),
       isActive: new FormControl(false),
       category: new FormControl('', Validators.required),

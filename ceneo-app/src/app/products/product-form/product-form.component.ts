@@ -1,4 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ce-product-form',
@@ -8,9 +9,29 @@ import { Component, OnInit, Input } from '@angular/core';
 export class ProductFormComponent implements OnInit {
 
   @Input() product;
-  constructor() { }
+  @Output() saveProduct = new EventEmitter();
+  myProductForm: FormGroup;
+
+  constructor() {
+    this.myProductForm = new FormGroup({
+      name: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.maxLength(100)),
+      price: new FormControl('', Validators.min(1)),
+      isActive: new FormControl(false),
+      category: new FormControl('', Validators.required),
+    })
+  }
 
   ngOnInit(): void {
+    if(this.product) {
+      this.myProductForm.patchValue(this.product)
+    }
+  }
+
+  handleSubmit() {
+    if(this.myProductForm.valid) {
+      this.saveProduct.emit(this.myProductForm.value);
+    }
   }
 
 }

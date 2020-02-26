@@ -20,5 +20,8 @@ export class ProductEditComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  handleSave(product: Product) {
+    this.productsService.updateProduct({ ...product, id: this.route.snapshot.params.id})
+  }
 
 }

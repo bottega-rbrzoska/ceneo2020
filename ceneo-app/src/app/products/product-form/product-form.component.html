@@ -1,1 +1,12 @@
-<p>product-form works!</p>
+<form [formGroup]="myProductForm" (submit)="handleSubmit()" >
+  Name: <input class="form-control" formControlName="name">
+  Description: <textarea class="form-control" formControlName="description"></textarea>
+  Price: <input type="number" class="form-control" formControlName="price">
+  Is Active: <input type="checkbox" class="form-control" formControlName="isActive">
+  Category: <select class="form-control" formControlName="category">
+    <option value="electronic">Electronic</option>
+    <option value="food">Food</option>
+    <option value="other">Other</option>
+  </select>
+  <button class="btn btn-danger">Send</button>
+</form>

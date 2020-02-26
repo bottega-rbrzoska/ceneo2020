@@ -7,21 +7,24 @@ import { ClickService } from './click.service';
 import { MultiplyPipe } from './multiply.pipe';
 import { HighlightDirective } from './highlight.directive';
 import { ShowForAdminDirective } from './show-for-admin.directive';
+import { NotificationContainerComponent } from './notification-container/notification-container.component';
+import { NotificationComponent } from './notification/notification.component';
+import { NotificationService } from './notification.service';
 
 @NgModule({
   declarations: [BannerComponent, BannerHeaderComponent,
     BannerContentComponent,
-     MultiplyPipe, HighlightDirective, ShowForAdminDirective],
+     MultiplyPipe, HighlightDirective, ShowForAdminDirective, NotificationContainerComponent, NotificationComponent],
   imports: [
     CommonModule
   ],
-  exports: [BannerComponent, MultiplyPipe, HighlightDirective, ShowForAdminDirective]
+  exports: [BannerComponent, MultiplyPipe, HighlightDirective, ShowForAdminDirective, NotificationContainerComponent]
 })
 export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [ ClickService ]
+      providers: [ ClickService, NotificationService ]
     }
   }
 }

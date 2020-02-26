@@ -1,0 +1,5 @@
+<form #dupaTemplateForm="ngForm" (submit)="handleSubmit(dupaTemplateForm)" >
+  Email: <input class="form-control" name="email" ngModel="Zenek@oczyzielone.pl" required>
+  Message: <textarea [readOnly]="dupaTemplateForm.controls.email?.invalid" class="form-control" name="message" ngModel maxlength="10"></textarea>
+  <button  [disabled]="dupaTemplateForm.invalid" class="btn btn-danger">Send</button>
+</form>

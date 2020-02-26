@@ -1,0 +1,7 @@
+<form [formGroup]="myContactForm" (submit)="handleSubmit()" >
+  Email: <input class="form-control" formControlName="email">
+  Message: <textarea class="form-control" formControlName="message"></textarea>
+  <div>{{myContactForm.controls.message.errors?.dupaError ? 'Użyj lepiej ' + myContactForm.controls.message.errors.dupaError.alternatywneWyrazy : '' }}</div>
+  <button class="btn btn-danger">Send</button>
+</form>
+{{myContactForm.controls.email.errors | json}}

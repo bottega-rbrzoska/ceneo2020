@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -10,6 +11,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { NotFoundPageComponent } from './not-found-page/not-found-page.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
+import { ContactTemplateFormComponent } from './contact/contact-template-form/contact-template-form.component';
+import { ContactReactiveFormComponent } from './contact/contact-reactive-form/contact-reactive-form.component';
 
 @NgModule({
   declarations: [
@@ -19,12 +22,16 @@ import { SharedModule } from './shared/shared.module';
     ContactComponent,
     NavigationComponent,
     NotFoundPageComponent,
+    ContactTemplateFormComponent,
+    ContactReactiveFormComponent,
   ],
   imports: [
     BrowserModule,
     CoreModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

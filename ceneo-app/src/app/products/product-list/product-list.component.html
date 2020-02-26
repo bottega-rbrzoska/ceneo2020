@@ -1,8 +1,13 @@
 
-<div class="list-group">
-  <button type="button"
-  *ngFor="let product of products"
-  class="list-group-item list-group-item-action">
-    {{product.name}}</button>
-</div>
-<ce-banner></ce-banner>
+<button class="btn btn-danger" routerLink="/products/add">Add</button>
+
+<ng-container *ngIf="products$ | async as products">
+  <div class="list-group">
+    <div
+    *ngFor="let product of products"
+    class="list-group-item list-group-item-action d-flex justify-content-between">
+      <span>{{product.name}}</span>
+      <button class="btn btn-danger" [routerLink]="['/products', product.id, 'edit']">Edit</button>
+    </div>
+  </div>
+</ng-container>

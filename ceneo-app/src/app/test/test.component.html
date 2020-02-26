@@ -1,10 +1,12 @@
 <ng-container *ngIf="testData$ | async as testData;else loader">
 
   {{testData | json}}
-  <div class="test-box">
+  <div class="test-box" ceHighlight #ceHighlighDirectiveInstance="ceHighlight">
   <ce-banner *ceShowForAdmin title="Super Banner" content="super banner super content" ></ce-banner>
   </div>
   {{testData | json}}
+
+<button (click)="ceHighlighDirectiveInstance.setHighlight()">Highlight</button>
 </ng-container>
 <ng-template #loader>
   <div> Loading test data .... </div>

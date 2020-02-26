@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductService } from '../product.service';
 import { Observable } from 'rxjs';
+import { HighlightDirective } from 'src/app/shared/highlight.directive';
 
 @Component({
   selector: 'ce-product-list',
@@ -10,6 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class ProductListComponent implements OnInit {
 
+  @ViewChildren(HighlightDirective) highlights: QueryList<HighlightDirective>
   products$: Observable<Product[]>;
   constructor( private productService: ProductService) {
     this.products$ = this.productService.products$;
@@ -17,6 +19,12 @@ export class ProductListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  highlightAll() {
+    this.highlights.forEach(hd => {
+      hd.setHighlight()
+    })
   }
 
 }

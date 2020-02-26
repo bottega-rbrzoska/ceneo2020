@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ProductService } from '../product.service';
 import { Observable, forkJoin } from 'rxjs';
 import { Product } from 'src/app/models/product';
-import { lookupService } from 'dns';
 
 @Component({
   selector: 'ce-product-edit',
@@ -13,7 +12,7 @@ import { lookupService } from 'dns';
 export class ProductEditComponent implements OnInit {
 
   product$: Observable<Product>
-  constructor(private route: ActivatedRoute,
+  constructor(private route: ActivatedRoute, private router: Router,
     private productsService: ProductService) {
     this.product$ = productsService.getById(route.snapshot.params.id)
   }
@@ -22,6 +21,7 @@ export class ProductEditComponent implements OnInit {
   }
   handleSave(product: Product) {
     this.productsService.updateProduct({ ...product, id: this.route.snapshot.params.id})
+    .subscribe(() =>this.router.navigateByUrl('/products'))
   }
 
 }

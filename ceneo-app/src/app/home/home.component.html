@@ -1,1 +1,11 @@
-<p>home works!</p>
+<ul>
+  <li ceHighlight="ce-h" ceHighlightSetBorder="true"
+  *ngFor="let item of arr" [ngClass]="{'is-even': item % 2 === 0, 'is-odd': item %2 !== 0 }">
+    {{ item | currency:'USD'}}
+  </li>
+</ul>
+  <div *ceShowForAdmin>
+    Hidden message for admin
+  </div>
+
+

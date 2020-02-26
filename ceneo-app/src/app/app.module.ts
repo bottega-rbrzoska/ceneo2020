@@ -14,6 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { ContactTemplateFormComponent } from './contact/contact-template-form/contact-template-form.component';
 import { ContactReactiveFormComponent } from './contact/contact-reactive-form/contact-reactive-form.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +24,7 @@ import { ContactReactiveFormComponent } from './contact/contact-reactive-form/co
     NavigationComponent,
     NotFoundPageComponent,
     ContactTemplateFormComponent,
-    ContactReactiveFormComponent,
+    ContactReactiveFormComponent
   ],
   imports: [
     BrowserModule,

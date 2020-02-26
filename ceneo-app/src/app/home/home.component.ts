@@ -7,9 +7,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
+  arr = [1, 2, 3, 4, 5]
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  multiply(num, mult) {
+    console.log('multipla')
+    return num * mult;
   }
 
 }

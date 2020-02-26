@@ -23,5 +23,4 @@ export class ProductEditComponent implements OnInit {
     this.productsService.updateProduct({ ...product, id: this.route.snapshot.params.id})
     .subscribe(() =>this.router.navigateByUrl('/products'))
   }
-
 }

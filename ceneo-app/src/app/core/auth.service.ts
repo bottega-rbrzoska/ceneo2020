@@ -17,6 +17,7 @@ export class AuthService {
   }
   user$ = this.userSubj.asObservable();
   username$ = this.userSubj.pipe(map(user => user?.username));
+  isAdmin$ = this.userSubj.pipe(map(user => user?.admin));
   isLoggedIn$ = this.userSubj.pipe(map(user => !!user));
 
   constructor(private httpClient: HttpClient, private router: Router) {

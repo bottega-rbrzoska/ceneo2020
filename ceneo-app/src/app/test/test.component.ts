@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
 import { TestService } from '../core/test.service';
 import { Observable, of, Subject, BehaviorSubject } from 'rxjs';
 import { tap, map, filter } from 'rxjs/operators';
@@ -11,12 +11,17 @@ import { tap, map, filter } from 'rxjs/operators';
 })
 export class TestComponent implements OnInit {
   testData$;
+  bannerTestData = {
+    name: 'asdasd',
+    age: 99
+  }
   @Input('testInput') myInput;
   @Output() testOutput = new EventEmitter<string>()
   constructor(public testService: TestService) {
 
     this.testData$ = this.testService.getTestData();
     const subj = new BehaviorSubject(0);
+    setTimeout(() => { this.bannerTestData = { ...this.bannerTestData, name: 'newname2' }}, 3000)
 
     subj.next(1)
     subj.next(2)

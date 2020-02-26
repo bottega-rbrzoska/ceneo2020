@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NotificationService } from './shared/notification.service';
 
 @Component({
   selector: 'ce-root',
@@ -8,7 +9,12 @@ import { Component } from '@angular/core';
 export class AppComponent {
   inputData = { testNumber: 1, testString: 'dwa' };
   title = 'ceneo-app';
+  constructor(private notificationService: NotificationService) {
 
+  }
+  ngOnInit() {
+    this.notificationService.pushNotification({message: 'test', title: 'test'})
+  }
   handleTestOutput(data) {
     console.log(data)
   }

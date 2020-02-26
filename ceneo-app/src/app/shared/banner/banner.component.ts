@@ -1,14 +1,17 @@
-import { Component, OnInit, Input, OnDestroy, OnChanges } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, OnChanges, ChangeDetectionStrategy } from '@angular/core';
 import { ClickService } from '../click.service';
 
 @Component({
   selector: 'ce-banner',
   templateUrl: './banner.component.html',
-  styleUrls: ['./banner.component.scss']
+  styleUrls: ['./banner.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BannerComponent implements OnInit, OnDestroy, OnChanges {
 
   bannerTitle;
+
+  @Input() data: any;
 
   @Input()
   set title(val:string) {

@@ -1,8 +1,21 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { NotificationService } from './shared/notification.service';
 
 describe('AppComponent', () => {
+  describe('isolated tests', () => {
+    let component: AppComponent;
+    let notificationService: NotificationService
+    beforeEach(() => {
+      component = new AppComponent()
+    })
+
+    fit('should have initial title set', () => {
+      expect(component.title).toBe('ceneo-app')
+    })
+  })
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [

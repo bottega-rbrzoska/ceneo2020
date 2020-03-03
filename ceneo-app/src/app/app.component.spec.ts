@@ -2,17 +2,27 @@ import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { NotificationService } from './shared/notification.service';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AppComponent', () => {
   describe('isolated tests', () => {
     let component: AppComponent;
-    let notificationService: NotificationService
+    let notificationServiceSpy
     beforeEach(() => {
-      component = new AppComponent()
+      notificationServiceSpy = jasmine.createSpyObj('NotificationService', {
+        pushNotification() { /**/ }
+      });
+      component = new AppComponent(notificationServiceSpy)
     })
 
-    fit('should have initial title set', () => {
+    it('should have initial title set', () => {
       expect(component.title).toBe('ceneo-app')
+    })
+
+    it('should call pushNotification on ngOnInit', () => {
+      component.ngOnInit();
+
+      expect(notificationServiceSpy.pushNotification).toHaveBeenCalledWith({message: 'test', title: 'test'})
     })
   })
 
@@ -21,13 +31,15 @@ describe('AppComponent', () => {
       imports: [
         RouterTestingModule
       ],
+      schemas: [NO_ERRORS_SCHEMA],
       declarations: [
         AppComponent
       ],
+      providers: [NotificationService]
     }).compileComponents();
   }));
 
-  it('should create the app', () => {
+  fit('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
